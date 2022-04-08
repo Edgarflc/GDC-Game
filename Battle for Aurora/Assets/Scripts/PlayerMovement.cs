@@ -14,17 +14,19 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector3 velocity = Vector3.zero;
 
+    void Update()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded == true)
+        {
+            isJumping = true;
+        }
+    }
+
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
 
         float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-
-        if (Input.GetButtonDown("Jump") && isGrounded == true)
-        {
-            Debug.LogWarning("Jump");
-            isJumping = true;
-        }
 
         MovePlayer(horizontalMovement);
     }
