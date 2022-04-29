@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D rb;
     private Vector3 velocity = Vector3.zero;
+    public LayerMask ground;
 
     void Update()
     {
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
-        isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
+        isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position, ground);
 
         float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
